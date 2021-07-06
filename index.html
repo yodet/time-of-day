@@ -56,32 +56,80 @@
 </head>
 <body>
 	<header>
-		<h1 class="masthead">HTML5 Flexible Template</h1>
-		<nav>
-			<ul>
-				<li><a href="#">Link 1</a></li>
-				<li><a href="#">Link 2</a></li>
-				<li><a href="#">Link 3</a></li>
-				<li><a href="#">Link 4</a></li>
-				<li><a href="#">Link 5</a></li>
-				<li><a href="#">Link 6</a></li>
-			</ul>
-		</nav>
+		<h1 class="masthead">Time of Day</h1>
 	</header>
+	<h2 id="greeting">Good Morning!</h2>
     <main>
-	 <header><h3>Add main (related) contents here.</h3></header>
-	 <p>This HTML5 Flexible template could be a good starting point for some of your projects.  The template file starts by setting a background color on the HTML element, and setting max-width on the body, which is styled like a wrapper.  The BODY element is also set to a percentage width so it leaves a bit of HTML color until it shrinks in size toward the mobile view.</p>
-	 <p>There is an image with a class of FLEXIBLE which is set to a max-width equal to the size of the image.  Simutaneously the class sets the image to a percentage width, allowing the image to flex in size.  The height is not changed, as this would skew the image.</p>
-	 <p>The LIST elements inside the NAV are displayed inline by setting the display to be inline-block.  Bullets are removed by setting the UL to display</p>
-	 <p>The FOOTER includes a clear:both to keep everything above it!</p>
-	  <img src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
+	 <header><h3>A JavaScript example by Yodet Shigute.</h3></header>
+     <p>This is a web page that uses JavaScript to determine the current hour, 
+		and presents a different image, custom message, and color based on each 
+		of the following times of day</p>
+	<p>
+		<ul>
+			<li>Morning (5am to 12 noon)</li>
+			<li>Afternoon (12 noon to 6pm)</li>
+			<li>Evening (6pm to 11pm)</li>
+			<li>Night (11pm to 5am)</li>
+		</ul>
+	</p>
+
+
+
+	  <img id="pic" src="http://dummyimage.com/300x400" alt="Picture of Me!" class="flexible" />
      </main>
     <footer>
-      <small>&copy; 2013, All Rights Reserved ~
+      <small>&copy; 2020 - <span id="copyright">copyright goes here</span>, All Rights Reserved ~
       <a href="https://validator.w3.org/check/referer" target="_blank">Valid HTML</a> ~
       <a href="https://jigsaw.w3.org/css-validator/check?uri=referer" target="_blank">Valid CSS</a>
       </small>
     </footer>
-    <!-- END Footer -->
+	<script>
+		let myDate = new Date();
+
+		let myText = '';
+		let myColor = '';
+		let myPic = '';
+
+
+		let myHour = myDate.getHours();
+
+
+		//LINE BELOW FOR TETSING - REMOVE BEFORE PLACING IN SERVICE
+		//myHour=3;
+
+		console.log(myHour);
+
+		if(myHour >=5 && myHour < 12){
+			myText = "Good Morning!";
+			myColor = "orange";
+			myPic = "images/morning.jpg"
+
+		
+
+		} else if(myHour >=12 && myHour < 18){
+			myText = "Good Afternoon";
+			myColor = "green";
+			myPic = "images/afternoon.jpg"
+
+		} else if (myHour >=18 && myHour <23) {
+			myText = "Good Evening!";
+			myColor = "blue";
+			myPic = "images/evening.jpg"
+			
+		}else{
+			myText = "Good Afternoon";
+			myColor = "purple";
+			myPic = "images/night.jpg"
+		}
+		//console.log(myText);
+		document.getElementById('greeting').innerHTML= myText;
+		document.getElementById('greeting').style.color= myColor;
+		document.querySelector("html").style.backgroundColor= myColor;
+		document.getElementById('pic').src = myPic;
+
+		let myYear = myDate.getFullYear();
+		document.getElementById('copyright').innerHTML= myYear;
+
+	</script>
 </body>
 </html>
